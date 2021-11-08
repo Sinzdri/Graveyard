@@ -5,19 +5,24 @@ public class PlayerCharacter {
 	
 	private String charactername;
 	private String playername;
-	private String characterclass;
+	private CharacterClass characterclass;
+	private CharacterRace characterrace;
 	private int characterlevel;
-	private String causeofdeath;
+	private CauseOfDeath causeofdeath;
+//	private String causeofdeathdetail;
 	
-	public PlayerCharacter(Integer id, String charactername, String playername, String characterclass,
-			int characterlevel, String causeofdeath) {
+	public PlayerCharacter(Integer id, String charactername, String playername, CharacterClass characterclass,
+			CharacterRace characterrace, int characterlevel, String causeofdeath) {
 		this.id = id;
 		this.charactername = charactername;
 		this.playername = playername;
 		this.characterclass = characterclass;
+		this.characterrace = characterrace;
 		this.characterlevel = characterlevel;
 		this.causeofdeath = causeofdeath;
 	}
+	
+	
 	
 	
 }
