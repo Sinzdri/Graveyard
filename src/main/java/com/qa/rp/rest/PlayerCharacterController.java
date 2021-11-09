@@ -50,7 +50,7 @@ public class PlayerCharacterController {
 	}
 	
 	@PutMapping("/replace/{id}")
-	public ResponseEntity<PlayerCharacter> replacePlayerCharacter(@PathVariable int id, @RequestBody PlayerCharacter newCharacter) {
+	public ResponseEntity<PlayerCharacter> replaceCharacter(@PathVariable int id, @RequestBody PlayerCharacter newCharacter) {
 		System.out.println("Replacing character with id " + id + " with character entry " + newCharacter);
 		PlayerCharacter responseBody = this.service.replaceCharacter(id, newCharacter); //replaces the character at index id
 		return new ResponseEntity<PlayerCharacter>(responseBody, HttpStatus.ACCEPTED);
