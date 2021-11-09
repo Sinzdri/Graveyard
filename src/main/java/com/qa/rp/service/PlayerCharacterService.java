@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qa.rp.domain.PlayerCharacter;
+import com.qa.rp.exceptions.CharacterNotFoundException;
 import com.qa.rp.repo.PlayerCharacterRepo;
 
 
@@ -25,7 +26,7 @@ public class PlayerCharacterService {
 	}
 	
 	public PlayerCharacter getCharacterByID(Integer id) {
-		return this.repo.findById(id).orElseThrow(() -> new RuntimeException());	//throws exception if null entry at id index
+		return this.repo.findById(id).orElseThrow(() -> new CharacterNotFoundException());	//throws exception if null entry at id index
 	}
 	
 	public PlayerCharacter replaceCharacter(Integer id, PlayerCharacter newCharacter) {
@@ -40,7 +41,7 @@ public class PlayerCharacterService {
 	}
 	
 	public boolean deleteCharacter(Integer id) {
-		this.repo.findById(id).orElseThrow(() -> new RuntimeException());		//check id exists before attempting to delete
+		this.repo.findById(id).orElseThrow(() -> new CharacterNotFoundException());		//check id exists before attempting to delete
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
 	}
