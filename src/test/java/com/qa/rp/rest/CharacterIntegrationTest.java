@@ -83,6 +83,45 @@ class CharacterIntegrationTest {
 	}
 	
 	@Test
+	void testGetByCharacterName() throws Exception {
+		RequestBuilder request = get("/pc/get/bycharname/Bilston");
+		
+		ResultMatcher checkStatus = status().isOk();
+		PlayerCharacter expected = new PlayerCharacter(1, "Bilston", "Chris", CharacterClass.CLERIC, CharacterRace.GNOME, 4, CauseOfDeath.GOBLIN);
+		List<PlayerCharacter> characters = List.of(expected);
+		String responseBody = this.mapper.writeValueAsString(characters);
+		ResultMatcher checkBody = content().json(responseBody);
+		
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+	}
+	
+	@Test
+	void testGetByPlayerName() throws Exception {
+		RequestBuilder request = get("/pc/get/byplayername/Chris");
+		
+		ResultMatcher checkStatus = status().isOk();
+		PlayerCharacter expected = new PlayerCharacter(1, "Bilston", "Chris", CharacterClass.CLERIC, CharacterRace.GNOME, 4, CauseOfDeath.GOBLIN);
+		List<PlayerCharacter> characters = List.of(expected);
+		String responseBody = this.mapper.writeValueAsString(characters);
+		ResultMatcher checkBody = content().json(responseBody);
+		
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+	}
+	
+	@Test
+	void testGetByCharacterRace() throws Exception {
+		RequestBuilder request = get("/pc/get/bycharrace/gnome");
+		
+		ResultMatcher checkStatus = status().isOk();
+		PlayerCharacter expected = new PlayerCharacter(1, "Bilston", "Chris", CharacterClass.CLERIC, CharacterRace.GNOME, 4, CauseOfDeath.GOBLIN);
+		List<PlayerCharacter> characters = List.of(expected);
+		String responseBody = this.mapper.writeValueAsString(characters);
+		ResultMatcher checkBody = content().json(responseBody);
+		
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+	}
+	
+	@Test
 	void testReplace() throws Exception {
 		PlayerCharacter requestBody = new PlayerCharacter("Piety", "Andy", CharacterClass.DRUID, CharacterRace.TIEFLING, 4, CauseOfDeath.FRIENDLYFIRE);
 		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);
