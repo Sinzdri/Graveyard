@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.qa.rp.domain.CharacterRace;
 import com.qa.rp.domain.PlayerCharacter;
 import com.qa.rp.exceptions.CharacterNotFoundException;
 import com.qa.rp.repo.PlayerCharacterRepo;
@@ -27,6 +28,18 @@ public class PlayerCharacterService {
 	
 	public PlayerCharacter getCharacterByID(Integer id) {
 		return this.repo.findById(id).orElseThrow(() -> new CharacterNotFoundException());	//throws exception if null entry at id index
+	}
+	
+	public List<PlayerCharacter> getCharacterByName(String name) {
+		return this.repo.findPlayerCharacterBycharactername(name);
+	}
+	
+	public List<PlayerCharacter> getCharacterByPlayerName(String name) {
+		return this.repo.findPlayerCharacterByplayername(name);
+	}
+	
+	public List<PlayerCharacter> getCharacterByRace(CharacterRace race) {
+		return this.repo.findPlayerCharacterBycharacterrace(race);
 	}
 	
 	public PlayerCharacter replaceCharacter(Integer id, PlayerCharacter newCharacter) {

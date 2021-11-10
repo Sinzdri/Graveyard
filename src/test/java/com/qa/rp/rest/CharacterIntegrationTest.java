@@ -31,7 +31,7 @@ import com.qa.rp.domain.PlayerCharacter;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Sql(scripts = { "classpath:character-schema.sql", "classpath:character-data.sql"}
-				, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD) //runs test schema and data before each test
+				, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD) //runs test schema and data before each test to provide dataset for tests
 @ActiveProfiles("test")
 
 class CharacterIntegrationTest {
