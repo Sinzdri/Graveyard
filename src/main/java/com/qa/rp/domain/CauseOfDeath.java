@@ -1,9 +1,10 @@
 package com.qa.rp.domain;
 
 public enum CauseOfDeath {
-	GOBLIN ("a level 1 Goblin"),
+	FRIENDLYFIRE ("friendly fire"),
 	ROCKS ("rocks falling, everyone died."),
-	FRIENDLYFIRE ("friendly fire");
+	GOBLIN ("a level 1 Goblin");
+	
 	
 	private final String description;
 	

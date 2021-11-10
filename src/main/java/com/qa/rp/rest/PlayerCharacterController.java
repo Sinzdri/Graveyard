@@ -28,10 +28,10 @@ public class PlayerCharacterController {
 		this.service = service;
 	}
 	
-//	@GetMapping("/test")	//test mapping for basic string response
-//	public String hello() {
-//		return "Hello World!"; 
-//	}
+	@GetMapping("/test")	//test mapping for basic string response
+	public String hello() {
+		return "Hello World!"; 
+	}
 	
 	@PostMapping("/create")	// add new character to db
 	public ResponseEntity<PlayerCharacter> createCharacter(@RequestBody PlayerCharacter newPlayerCharacter) {
