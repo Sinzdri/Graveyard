@@ -39,23 +39,23 @@ class CharacterIntegrationTest {
 	private MockMvc mvc;
 	
 	@Autowired
-	private ObjectMapper mapper;
+	private ObjectMapper mapper;	//Use mapper to convert to and from JSON
 	
 	@Test
 	void testCreate() throws Exception {
-		PlayerCharacter requestBody = new PlayerCharacter("Allivandrell", "Andy", CharacterClass.ROGUE, CharacterRace.ELF, 3, CauseOfDeath.ROCKS);
-		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);
+		PlayerCharacter requestBody = new PlayerCharacter("Allivandrell", "Andy", CharacterClass.ROGUE, CharacterRace.ELF, 3, CauseOfDeath.ROCKS);	//create test character
+		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);	//convert test character to json
 		
-		RequestBuilder request = post("/pc/create").contentType(MediaType.APPLICATION_JSON).content(requestBodyAsJSON);
+		RequestBuilder request = post("/pc/create").contentType(MediaType.APPLICATION_JSON).content(requestBodyAsJSON);	//assemble test request
 		
-		PlayerCharacter responseBody = requestBody;
-		responseBody.setId(2);
-		String responseBodyAsJSON = this.mapper.writeValueAsString(responseBody);
+		PlayerCharacter responseBody = requestBody;	//test response expected to be same as request character
+		responseBody.setId(2);	//except need to manually set id to match expected id of 2 (due to existing test data at id 1)
+		String responseBodyAsJSON = this.mapper.writeValueAsString(responseBody); //convert response character to json
 		
-		ResultMatcher checkStatus = status().isCreated();
-		ResultMatcher checkBody = content().json(responseBodyAsJSON);
+		ResultMatcher checkStatus = status().isCreated();	//expect 201 created status
+		ResultMatcher checkBody = content().json(responseBodyAsJSON);	//assemble expected response character
 		
-		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);	//perform test and check against expected results
 	}
 	
 	@Test
@@ -148,12 +148,12 @@ class CharacterIntegrationTest {
 	
 	@Test
 	void testFailGet() throws Exception {
-		this.mvc.perform(get("/pc/get/99999")).andExpect(status().isNotFound());
+		this.mvc.perform(get("/pc/get/99999")).andExpect(status().isNotFound());	//test invalid get request for not found exception
 	}
 	
 	@Test
 	void testFailDelete() throws Exception {
-		this.mvc.perform(delete("/pc/remove/99999")).andExpect(status().isNotFound());
+		this.mvc.perform(delete("/pc/remove/99999")).andExpect(status().isNotFound());	//test invalid delete request for not found exception
 	}
 	
 }

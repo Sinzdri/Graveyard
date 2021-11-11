@@ -22,7 +22,7 @@ public class PlayerCharacter {
 	
 	private String charactername;
 	private String playername;
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)	//enumerated annotation ensures enums are handled correctly, chose to persist as string format.
 	private CharacterClass characterclass;
 	@Enumerated(EnumType.STRING)
 	private CharacterRace characterrace;
