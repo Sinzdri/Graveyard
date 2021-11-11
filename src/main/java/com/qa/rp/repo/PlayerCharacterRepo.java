@@ -11,7 +11,7 @@ import com.qa.rp.domain.PlayerCharacter;
 
 @Repository
 public interface PlayerCharacterRepo extends JpaRepository<PlayerCharacter, Integer> {	
-	List<PlayerCharacter> findPlayerCharacterBycharactername(String name);
+	List<PlayerCharacter> findPlayerCharacterBycharactername(String name);		//queries automatically derived by Spring Data
 	List<PlayerCharacter> findPlayerCharacterByplayername(String name);
 	List<PlayerCharacter> findPlayerCharacterBycharacterrace(CharacterRace race);
 }
