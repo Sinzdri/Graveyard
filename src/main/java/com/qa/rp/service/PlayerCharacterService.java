@@ -1,11 +1,14 @@
 package com.qa.rp.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.qa.rp.domain.CharacterRace;
 import com.qa.rp.domain.PlayerCharacter;
+import com.qa.rp.dto.PlayerCharacterDTO;
 import com.qa.rp.exceptions.CharacterNotFoundException;
 import com.qa.rp.repo.PlayerCharacterRepo;
 
@@ -14,43 +17,50 @@ import com.qa.rp.repo.PlayerCharacterRepo;
 @Service
 public class PlayerCharacterService {
 	private PlayerCharacterRepo repo;
-	public PlayerCharacterService(PlayerCharacterRepo repo) {
+	
+	private ModelMapper mapper;
+	
+	public PlayerCharacterService(PlayerCharacterRepo repo, ModelMapper mapper) {
 		this.repo = repo;
+		this.mapper = mapper;
 	}
 	
-	public PlayerCharacter addCharacter(PlayerCharacter pc){
-		return this.repo.save(pc);
+	public PlayerCharacterDTO addCharacter(PlayerCharacter pc){
+		PlayerCharacter added = this.repo.save(pc);
+		return this.mapToDTO(added);
 	}
 	
-	public List<PlayerCharacter> getAllCharacters() {
-		return this.repo.findAll();
+	public List<PlayerCharacterDTO> getAllCharacters() {
+		return this.repo.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
-	public PlayerCharacter getCharacterByID(Integer id) {
-		return this.repo.findById(id).orElseThrow(() -> new CharacterNotFoundException());	//throws exception if null entry at id index
+	public PlayerCharacterDTO getCharacterByID(Integer id) {
+		PlayerCharacter returned = this.repo.findById(id).orElseThrow(() -> new CharacterNotFoundException());	//throws exception if null entry at id index
+		return this.mapToDTO(returned);
 	}
 	
-	public List<PlayerCharacter> getCharacterByName(String name) {
-		return this.repo.findPlayerCharacterBycharactername(name);
+	public List<PlayerCharacterDTO> getCharacterByName(String name) {
+		return this.repo.findPlayerCharacterBycharactername(name).stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
-	public List<PlayerCharacter> getCharacterByPlayerName(String name) {
-		return this.repo.findPlayerCharacterByplayername(name);
+	public List<PlayerCharacterDTO> getCharacterByPlayerName(String name) {
+		return this.repo.findPlayerCharacterByplayername(name).stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
-	public List<PlayerCharacter> getCharacterByRace(CharacterRace race) {
-		return this.repo.findPlayerCharacterBycharacterrace(race);
+	public List<PlayerCharacterDTO> getCharacterByRace(CharacterRace race) {
+		return this.repo.findPlayerCharacterBycharacterrace(race).stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
-	public PlayerCharacter replaceCharacter(Integer id, PlayerCharacter newCharacter) {
-		PlayerCharacter existing = this.getCharacterByID(id);
+	public PlayerCharacterDTO replaceCharacter(Integer id, PlayerCharacter newCharacter) {
+		PlayerCharacter existing = this.repo.findById(id).orElseThrow(() -> new CharacterNotFoundException());
 		existing.setCauseofdeath(newCharacter.getCauseofdeath());
 		existing.setCharacterclass(newCharacter.getCharacterclass());
 		existing.setCharacterlevel(newCharacter.getCharacterlevel());
 		existing.setCharactername(newCharacter.getCharactername());
 		existing.setCharacterrace(newCharacter.getCharacterrace());
 		existing.setPlayername(newCharacter.getPlayername());
-		return this.repo.save(existing);
+		PlayerCharacter replaced = this.repo.save(existing);
+		return this.mapToDTO(replaced);
 	}
 	
 	public boolean deleteCharacter(Integer id) {
@@ -58,6 +68,10 @@ public class PlayerCharacterService {
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
 	}
+	
+    private PlayerCharacterDTO mapToDTO(PlayerCharacter playercharacter) {	//use mapper to convert to DTO
+        return this.mapper.map(playercharacter, PlayerCharacterDTO.class);
+    }
 	
 	
 }

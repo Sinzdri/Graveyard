@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.rp.domain.CharacterRace;
 import com.qa.rp.domain.PlayerCharacter;
+import com.qa.rp.dto.PlayerCharacterDTO;
 import com.qa.rp.service.PlayerCharacterService;
 
 
@@ -29,47 +30,47 @@ public class PlayerCharacterController {
 		this.service = service;
 	}
 	
-	@GetMapping("/test")	//test mapping for basic string response
-	public String hello() {
-		return "Hello World!"; 
-	}
+//	@GetMapping("/test")	//test mapping for basic string response
+//	public String hello() {
+//		return "Hello World!"; 
+//	}
 	
 	@PostMapping("/create")	// add new character to db
-	public ResponseEntity<PlayerCharacter> createCharacter(@RequestBody PlayerCharacter newPlayerCharacter) {
-		PlayerCharacter responseBody = this.service.addCharacter(newPlayerCharacter);
-		return new ResponseEntity<PlayerCharacter>(responseBody, HttpStatus.CREATED);
+	public ResponseEntity<PlayerCharacterDTO> createCharacter(@RequestBody PlayerCharacter newPlayerCharacter) {
+		PlayerCharacterDTO responseBody = this.service.addCharacter(newPlayerCharacter);
+		return new ResponseEntity<PlayerCharacterDTO>(responseBody, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/getAll")	// get all characters
-	public List<PlayerCharacter> getCharacters(){
+	public List<PlayerCharacterDTO> getCharacters(){
 		return this.service.getAllCharacters();
 	}
 	
 	@GetMapping("/get/{id}") // get character by id
-	public PlayerCharacter getCharacter(@PathVariable int id) {
+	public PlayerCharacterDTO getCharacter(@PathVariable int id) {
 		return this.service.getCharacterByID(id);
 	}
 	
 	@GetMapping("/get/bycharname/{name}") // get character(s) by character name
-	public List<PlayerCharacter> getCharacterByCharacterName(@PathVariable String name){
+	public List<PlayerCharacterDTO> getCharacterByCharacterName(@PathVariable String name){
 		return this.service.getCharacterByName(name);
 	}
 	
 	@GetMapping("/get/byplayername/{name}") // get character(s) by player name
-	public List<PlayerCharacter> getCharacterByPlayerName(@PathVariable String name){
+	public List<PlayerCharacterDTO> getCharacterByPlayerName(@PathVariable String name){
 		return this.service.getCharacterByPlayerName(name);
 	}
 	
 	@GetMapping("/get/bycharrace/{race}") // get character(s) by character race
-	public List<PlayerCharacter> getCharacterByCharacterName(@PathVariable CharacterRace race){
+	public List<PlayerCharacterDTO> getCharacterByCharacterName(@PathVariable CharacterRace race){
 		return this.service.getCharacterByRace(race);
 	}
 	
 	@PutMapping("/replace/{id}")	// replace character with at id
-	public ResponseEntity<PlayerCharacter> replaceCharacter(@PathVariable int id, @RequestBody PlayerCharacter newCharacter) {
+	public ResponseEntity<PlayerCharacterDTO> replaceCharacter(@PathVariable int id, @RequestBody PlayerCharacter newCharacter) {
 		System.out.println("Replacing character with id " + id + " with character entry " + newCharacter);
-		PlayerCharacter responseBody = this.service.replaceCharacter(id, newCharacter); //replaces the character at index id
-		return new ResponseEntity<PlayerCharacter>(responseBody, HttpStatus.ACCEPTED);
+		PlayerCharacterDTO responseBody = this.service.replaceCharacter(id, newCharacter); //replaces the character at index id
+		return new ResponseEntity<PlayerCharacterDTO>(responseBody, HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/remove/{id}")	// remove character at id
