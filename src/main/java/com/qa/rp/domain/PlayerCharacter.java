@@ -3,9 +3,13 @@ package com.qa.rp.domain;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class PlayerCharacter {
@@ -13,8 +17,11 @@ public class PlayerCharacter {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT
 	private Integer id;
 	
+	@ManyToOne(fetch = FetchType.LAZY) //lazy fetch avoids potential query issues
+	@JoinColumn(name = "player_id")
+	private PlayerCharacter playercharacter;
+	
 	private String charactername;
-	private String playername;
 	@Enumerated(EnumType.STRING)
 	private CharacterClass characterclass;
 	@Enumerated(EnumType.STRING)
@@ -24,21 +31,21 @@ public class PlayerCharacter {
 	private CauseOfDeath causeofdeath;
 //	private String causeofdeathdetail;
 	
-	public PlayerCharacter(Integer id, String charactername, String playername, CharacterClass characterclass,
+	public PlayerCharacter(Integer id, String charactername, PlayerCharacter playercharacter, CharacterClass characterclass,
 			CharacterRace characterrace, int characterlevel, CauseOfDeath causeofdeath) {
 		this.id = id;
 		this.charactername = charactername;
-		this.playername = playername;
+		this.playercharacter = playercharacter;
 		this.characterclass = characterclass;
 		this.characterrace = characterrace;
 		this.characterlevel = characterlevel;
 		this.causeofdeath = causeofdeath;
 	}
 	
-	public PlayerCharacter(String charactername, String playername, CharacterClass characterclass,
+	public PlayerCharacter(String charactername, PlayerCharacter playercharacter, CharacterClass characterclass,
 			CharacterRace characterrace, int characterlevel, CauseOfDeath causeofdeath) {
 		this.charactername = charactername;
-		this.playername = playername;
+		this.playercharacter = playercharacter;
 		this.characterclass = characterclass;
 		this.characterrace = characterrace;
 		this.characterlevel = characterlevel;
@@ -64,12 +71,13 @@ public class PlayerCharacter {
 		this.charactername = charactername;
 	}
 
-	public String getPlayername() {
-		return playername;
+
+	public PlayerCharacter getPlayercharacter() {
+		return playercharacter;
 	}
 
-	public void setPlayername(String playername) {
-		this.playername = playername;
+	public void setPlayercharacter(PlayerCharacter playercharacter) {
+		this.playercharacter = playercharacter;
 	}
 
 	public CharacterClass getCharacterclass() {

@@ -1,0 +1,2 @@
+INSERT INTO `graveyard`.`player` (`id`, `emailaddress`, `firstname`, `lastname`) VALUES ('1', 'test@email.com', 'Test', 'Tester');
+INSERT INTO `graveyard`.`player` (`id`, `emailaddress`, `firstname`, `lastname`) VALUES ('2', 'test@gmail.com', 'Bob', 'Bobson');

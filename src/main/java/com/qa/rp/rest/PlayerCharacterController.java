@@ -55,10 +55,10 @@ public class PlayerCharacterController {
 		return this.service.getCharacterByName(name);
 	}
 	
-	@GetMapping("/get/byplayername/{name}") // get character(s) by player name
-	public List<PlayerCharacter> getCharacterByPlayerName(@PathVariable String name){
-		return this.service.getCharacterByPlayerName(name);
-	}
+//	@GetMapping("/get/byplayerid/{id}") // get character(s) by player name
+//	public List<PlayerCharacter> getCharacterByPlayerName(@PathVariable int id){
+//		return this.service.getCharacterByPlayerID(id);
+//	}
 	
 	@GetMapping("/get/bycharrace/{race}") // get character(s) by character race
 	public List<PlayerCharacter> getCharacterByCharacterName(@PathVariable CharacterRace race){

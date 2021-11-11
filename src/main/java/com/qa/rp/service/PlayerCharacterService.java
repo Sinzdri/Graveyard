@@ -34,9 +34,9 @@ public class PlayerCharacterService {
 		return this.repo.findPlayerCharacterBycharactername(name);
 	}
 	
-	public List<PlayerCharacter> getCharacterByPlayerName(String name) {
-		return this.repo.findPlayerCharacterByplayername(name);
-	}
+//	public List<PlayerCharacter> getCharacterByPlayerID(int id) {
+//		return this.repo.findPlayerCharacterByplayercharacter(id);
+//	}
 	
 	public List<PlayerCharacter> getCharacterByRace(CharacterRace race) {
 		return this.repo.findPlayerCharacterBycharacterrace(race);
@@ -49,14 +49,14 @@ public class PlayerCharacterService {
 		existing.setCharacterlevel(newCharacter.getCharacterlevel());
 		existing.setCharactername(newCharacter.getCharactername());
 		existing.setCharacterrace(newCharacter.getCharacterrace());
-		existing.setPlayername(newCharacter.getPlayername());
+		existing.setPlayercharacter(newCharacter.getPlayercharacter());
 		return this.repo.save(existing);
 	}
 	
 	public boolean deleteCharacter(Integer id) {
 		this.repo.findById(id).orElseThrow(() -> new CharacterNotFoundException());		//check id exists before attempting to delete
 		this.repo.deleteById(id);
-		return !this.repo.existsById(id);
+		return !this.repo.existsById(id);	//check has actually been deleted
 	}
 	
 	
