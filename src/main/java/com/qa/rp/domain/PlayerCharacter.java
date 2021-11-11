@@ -1,6 +1,8 @@
 package com.qa.rp.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,9 +15,12 @@ public class PlayerCharacter {
 	
 	private String charactername;
 	private String playername;
+	@Enumerated(EnumType.STRING)
 	private CharacterClass characterclass;
+	@Enumerated(EnumType.STRING)
 	private CharacterRace characterrace;
 	private int characterlevel;
+	@Enumerated(EnumType.STRING)
 	private CauseOfDeath causeofdeath;
 //	private String causeofdeathdetail;
 	
