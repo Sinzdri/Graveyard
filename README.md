@@ -51,17 +51,17 @@ There is significant room for improvements and additions to the project. Full un
 
 ## Screenshots <a name="screenshots"></a>
 Below is a series of screenshots demonstrating the functionality via postman and persistance in the local MySQL server used.
-![](documentation/images/createpostman.PNG)
-![](documentation/images/deletepostman.PNG)
-![](documentation/images/getallpostman.PNG)
-![](documentation/images/replacepostman.PNG)
-![](documentation/images/getbyidpostman.PNG)
-![](documentation/images/getbyracepostman.PNG)
-![](documentation/images/mysql.PNG)
-![](documentation/images/mysql2.PNG)
+![createpostman](documentation/images/createpostman.png)
+![](documentation/images/deletepostman.png)
+![](documentation/images/getallpostman.png)
+![](documentation/images/replacepostman.png)
+![](documentation/images/getbyidpostman.png)
+![](documentation/images/getbyracepostman.png)
+![](documentation/images/mysql.png)
+![](documentation/images/mysql2.png)
 ### Junit Test <a name="testcov"></a>
 Below is the test results with coverage report.
-![](documentation/images/tests.PNG)
+![](documentation/images/tests.png)
 
 ## Author <a name="author"></a>
 Paul Randall
