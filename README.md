@@ -36,7 +36,7 @@ My project aims to create a Spring Boot based API for recording dead Role Playin
 I primarily used "tasks" to organise the project, due to the relatively small scope. Throughout the week several additional tasks were added as required and some tasks proved more time consuming than my initial estimates. [Link to jira board](https://paul-randall.atlassian.net/jira/software/projects/GRAV/boards/1/roadmap)
 
 ## Risk Assessment <a name="risk"></a>
-A risk assessment is contained in the documents folder. [Link to risk assessment](/documentation/riskassesment.pdf)
+A risk assessment is contained in the documents folder. [Link to risk assessment](/documentation/RiskAssessment.pdf)
 
 ## Expectations <a name="expectations"></a>
 Going into the project I had a relatively simple concept and a reasonable timeframe to complete it in. I expected to have plenty of time to look into pushing the project beyond the minimum viable product.
@@ -51,7 +51,7 @@ There is significant room for improvements and additions to the project. Full un
 
 ## Screenshots <a name="screenshots"></a>
 Below is a series of screenshots demonstrating the functionality via postman and persistance in the local MySQL server used.
-![createpostman](documentation/images/createpostman.png)
+![](documentation/images/createpostman.png)
 ![](documentation/images/deletepostman.png)
 ![](documentation/images/getallpostman.png)
 ![](documentation/images/replacepostman.png)
