@@ -27,6 +27,7 @@ import com.qa.rp.domain.CauseOfDeath;
 import com.qa.rp.domain.CharacterClass;
 import com.qa.rp.domain.CharacterRace;
 import com.qa.rp.domain.PlayerCharacter;
+import com.qa.rp.dto.PlayerCharacterDTO;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -43,12 +44,12 @@ class CharacterIntegrationTest {
 	
 	@Test
 	void testCreate() throws Exception {
-		PlayerCharacter requestBody = new PlayerCharacter("Allivandrell", "Andy", CharacterClass.ROGUE, CharacterRace.ELF, 3, CauseOfDeath.ROCKS);	//create test character
+		PlayerCharacterDTO requestBody = new PlayerCharacterDTO(null, "Allivandrell", "Andy", CharacterClass.ROGUE, CharacterRace.ELF, 3, CauseOfDeath.ROCKS);	//create test character
 		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);	//convert test character to json
 		
 		RequestBuilder request = post("/pc/create").contentType(MediaType.APPLICATION_JSON).content(requestBodyAsJSON);	//assemble test request
 		
-		PlayerCharacter responseBody = requestBody;	//test response expected to be same as request character
+		PlayerCharacterDTO responseBody = requestBody;	//test response expected to be same as request character
 		responseBody.setId(2);	//except need to manually set id to match expected id of 2 (due to existing test data at id 1)
 		String responseBodyAsJSON = this.mapper.writeValueAsString(responseBody); //convert response character to json
 		

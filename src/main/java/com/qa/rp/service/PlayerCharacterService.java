@@ -25,8 +25,9 @@ public class PlayerCharacterService {
 		this.mapper = mapper;
 	}
 	
-	public PlayerCharacterDTO addCharacter(PlayerCharacter pc){
-		PlayerCharacter added = this.repo.save(pc);
+	public PlayerCharacterDTO addCharacter(PlayerCharacterDTO pc){
+		PlayerCharacter toadd = this.mapFromDTO(pc);
+		PlayerCharacter added = this.repo.save(toadd);
 		return this.mapToDTO(added);
 	}
 	
@@ -71,6 +72,10 @@ public class PlayerCharacterService {
 	
     private PlayerCharacterDTO mapToDTO(PlayerCharacter playercharacter) {	//use mapper to convert to DTO
         return this.mapper.map(playercharacter, PlayerCharacterDTO.class);
+    }
+    
+    private PlayerCharacter mapFromDTO(PlayerCharacterDTO playercharacter) {	//use mapper to convert from DTO
+        return this.mapper.map(playercharacter, PlayerCharacter.class);
     }
 	
 	
