@@ -47,7 +47,7 @@ Meeting the MVP went well, the core functionality had no real problems being imp
 I found some of my stretch goals took significantly more time than expected, due to some additions requiring some rework elsewhere in the project to adjust. In the future I would consider incorportating usage of DTOs sooner for example in order to avoid a significant rework of integration tests. In a couple of cases time was wasted working on features that had to be dropped.
 
 ## Possible Improvements <a name="improvements"></a>
-There is significant room for improvements and additions to the project. Full unit testing with mockito was not fully implemented in the final build, although some tests were made in a feature branch. Similarly seperation of the player's details into a seperate entity with a one to many relationship for multiple classes was worked on for some time in a feature branch but dropped due to escalating complexity with limited time. Similarly a front-end still could be developed for proper deployment.
+There is significant room for improvements and additions to the project. Full unit testing with mockito was not fully implemented in the final build, although some tests were made in a feature branch. Similarly seperation of the player's details into a seperate entity with a one to many relationship to multiple player characters was worked on for some time in a feature branch but dropped due to escalating complexity with limited time. Similarly a front-end still could be developed for proper deployment.
 
 ## Screenshots <a name="screenshots"></a>
 Below is a series of screenshots demonstrating the functionality via postman and persistance in the local MySQL server used.
