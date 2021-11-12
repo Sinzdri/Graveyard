@@ -96,7 +96,7 @@ class CharacterIntegrationTest {
 	}
 	
 	@Test
-	void testGetByPlayerName() throws Exception {
+	void ost() throws Exception {
 		RequestBuilder request = get("/pc/get/byplayername/Chris");
 		
 		ResultMatcher checkStatus = status().isOk();
