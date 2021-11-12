@@ -33,7 +33,7 @@ The requirements for this include:
 My project aims to create a Spring Boot based API for recording dead Role Playing game characters, potentially for deployment as a simple website with some front end development. 
 
 ## Jira Board <a name="jira"></a>
-I primarily used tasks to organise the project, due to the relatively small scope. Throughout the week several additional tasks were added as required and some tasks proved more time consuming than my initial estimates. [Link to jira board](https://paul-randall.atlassian.net/jira/software/projects/GRAV/boards/1/roadmap)
+I primarily used "tasks" to organise the project, due to the relatively small scope. Throughout the week several additional tasks were added as required and some tasks proved more time consuming than my initial estimates. [Link to jira board](https://paul-randall.atlassian.net/jira/software/projects/GRAV/boards/1/roadmap)
 
 ## Risk Assessment <a name="risk"></a>
 A risk assessment is contained in the documents folder. [Link to risk assessment](/documentation/riskassesment.pdf)
@@ -42,7 +42,7 @@ A risk assessment is contained in the documents folder. [Link to risk assessment
 Going into the project I had a relatively simple concept and a reasonable timeframe to complete it in. I expected to have plenty of time to look into pushing the project beyond the minimum viable product.
 
 ## What went well? <a name="whatwentwell"></a>
-Meeting the MVP went well, the core functionality had few problems.
+Meeting the MVP went well, the core functionality had no real problems being implemented. Several custom queries and a custom exception were added smoothly and Lombok was integrated in easily to improve readability.
 ### What didn't go so well? <a name="whatdidnotgowell"></a>
 I found some of my stretch goals took significantly more time than expected, due to some additions requiring some rework elsewhere in the project to adjust. In the future I would consider incorportating usage of DTOs sooner for example in order to avoid a significant rework of integration tests. In a couple of cases time was wasted working on features that had to be dropped.
 
